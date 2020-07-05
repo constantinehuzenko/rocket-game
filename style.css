@@ -1,0 +1,102 @@
+body {
+  background: url(/starSky.png);
+  background-attachment: fixed;
+  animation: starSky 1s linear infinite;
+  overflow: hidden;
+  z-index: 1;
+  font-family: 'Montserrat', sans-serif;
+}
+
+h2 {
+  margin: 0;
+}
+
+.rocket {
+  position: absolute;
+
+  width: 100px;
+  transition: 0.5s;
+}
+
+.ufo {
+  position: absolute;
+
+  width: 70px;
+}
+
+.boom {
+  height: 50%;
+  position: absolute;
+  display: none;
+}
+
+.boom.game__over {
+  display: unset;
+}
+
+.keyboard {
+  position: absolute;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: ". up ." "left down right";
+  gap: 10px 10px;
+
+  top: 80%;
+  left: 42.5%;
+  font-size: 25px;
+}
+
+.keyboard > div {
+  padding: 10px 15px;
+
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+
+  box-shadow: 0 0 5px 2px black;
+}
+
+.keyboard > div.tap {
+  opacity: 0.7;
+  box-shadow: 0 0 5px 5px black inset;
+}
+
+.keyboard > div:hover {
+  box-shadow: 0 0 5px 5px black inset;
+  cursor: pointer;
+}
+
+.top_key {
+  grid-area: up;
+}
+.bottom_key {
+  grid-area: down;
+}
+.left_key {
+  grid-area: left;
+}
+.right_key {
+  grid-area: right;
+}
+
+.keys_text {
+  position: absolute;
+  bottom: 10%;
+  font-size: 10px !important;
+  color: white;
+  background: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 0 10px 0 !important;
+}
+
+@keyframes starSky {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 0 2049px;
+  }
+}

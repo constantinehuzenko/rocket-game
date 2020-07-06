@@ -1,5 +1,5 @@
 body {
-  background: url(/starSky.png);
+  background: url(starSky.png);
   background-attachment: fixed;
   animation: starSky 1s linear infinite;
   overflow: hidden;

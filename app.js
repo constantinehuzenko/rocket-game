@@ -35,7 +35,7 @@ function moveUfo() {
   let timer = setInterval(function () {
     let timePassed = Date.now() - start;
 
-    if (timePassed >= 2500) {
+    if (timePassed >= 2700) {
       clearInterval(timer);
       return;
     }
@@ -75,7 +75,7 @@ function moveUfo() {
 }
 
 if (gameOver === false) {
-  let timerId = setInterval(() => moveUfo(), 2500);
+  let timerId = setInterval(() => moveUfo(), 3000);
 }
 
 moveUfo();

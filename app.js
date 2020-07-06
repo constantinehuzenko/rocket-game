@@ -65,8 +65,11 @@ function moveUfo() {
   }, 5);
 
   function draw(timePassed) {
-    ufo.style.top = timePassed / 10 + "%";
-  }
+    if (window.screen.width < 500) {
+    ufo.style.top = timePassed / 25 + "%";
+  } else {
+    ufo.style.top = timePassed / 15 + "%";
+  }}
   ufo.style.left = (getCordLeft(rocket) + 20) + "px";
 }
 
@@ -141,3 +144,5 @@ rightKey.addEventListener('click', function() {
     leftCord += power;
       rocket.style.left = leftCord + "%";
 }})
+
+console.log(window.screen.width)

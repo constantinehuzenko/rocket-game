@@ -10,6 +10,7 @@ let rangeTop = 85;
 let rangeLeft = 45;
 let gameOver = false;
 
+
 let topKey = document.querySelector(".top_key");
 let bottomKey = document.querySelector(".bottom_key");
 let leftKey = document.querySelector(".left_key");
@@ -34,7 +35,7 @@ function moveUfo() {
   let timer = setInterval(function () {
     let timePassed = Date.now() - start;
 
-    if (timePassed >= 2200) {
+    if (timePassed >= 2500) {
       clearInterval(timer);
       return;
     }

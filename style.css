@@ -1,5 +1,5 @@
 body {
-  background: url(starSky.png);
+  background: url(/starSky.png);
   background-attachment: fixed;
   animation: starSky 1s linear infinite;
   overflow: hidden;
@@ -82,7 +82,7 @@ h2 {
 
 .keys_text {
   position: absolute;
-  bottom: 10%;
+  bottom: 17%;
   font-size: 10px !important;
   color: white;
   background: none !important;

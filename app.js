@@ -1,34 +1,29 @@
-let rocket = document.querySelector(".rocket");
-let ufo = document.querySelector(".ufo");
-let boom = document.querySelector(".boom");
-let power = 10;
+const rocket = document.querySelector(".rocket");
+const ufo = document.querySelector(".ufo");
+const boom = document.querySelector(".boom");
+const rangeTop = 85;
+const rangeLeft = 45;
+const power = 10;
 let topCord = 55;
 let leftCord = 45;
-let ufoCordTop = -25;
-let ufoCordLeft = 45;
-let rangeTop = 85;
-let rangeLeft = 45;
 let gameOver = false;
 
+const topKey = document.querySelector(".top_key");
+const bottomKey = document.querySelector(".bottom_key");
+const leftKey = document.querySelector(".left_key");
+const rightKey = document.querySelector(".right_key");
 
-let topKey = document.querySelector(".top_key");
-let bottomKey = document.querySelector(".bottom_key");
-let leftKey = document.querySelector(".left_key");
-let rightKey = document.querySelector(".right_key");
-
+// TODO: Create one function for this and rewrite to arrow;
 function getCord(el) {
-  let c = el.getBoundingClientRect();
-  let cordTop = Math.round(c.top);
-  let cordLeft = Math.round(c.left);
-  return cordTop;
+  const coordinate = el.getBoundingClientRect();
+  return Math.round(coordinate.top);
 }
-
 function getCordLeft(el) {
-  let c = el.getBoundingClientRect();
-  let cordLeft = Math.round(c.left);
-  return cordLeft;
+  const coordinate = el.getBoundingClientRect();
+  return Math.round(coordinate.left);
 }
 
+// TODO: Divide this function to smaller functions;
 function moveUfo() {
   let start = Date.now();
 
@@ -41,6 +36,7 @@ function moveUfo() {
     }
     draw(timePassed);
 
+    // TODO: Move complex conditionals to variables with clear name;
     if (
       getCord(ufo) < getCord(rocket) + rangeTop &&
       getCord(ufo) > getCord(rocket) - rangeTop
@@ -49,9 +45,10 @@ function moveUfo() {
         getCordLeft(ufo) < getCordLeft(rocket) + rangeLeft &&
         getCordLeft(ufo) > getCordLeft(rocket) - rangeLeft
       ) {
-        const cordForBoomTop = (getCord(rocket) - 90) + "px";
-        const cordForBoomLeft = (getCordLeft(rocket) - 90) + "px";
+        const cordForBoomTop = getCord(rocket) - 90 + "px";
+        const cordForBoomLeft = getCordLeft(rocket) - 90 + "px";
 
+        // TODO: Create facade to hide complex logic;
         gameOver = true;
         boom.style.top = cordForBoomTop;
         boom.style.left = cordForBoomLeft;
@@ -59,7 +56,13 @@ function moveUfo() {
         rocket.style.transition = "0s";
         rocket.style.opacity = "0";
         boom.style.display = "unset";
-        setTimeout(() => alert('Game Over \nFor continue click `ok` or `Enter` ') ? "" : location.reload(), 1000);
+        setTimeout(
+          () =>
+            alert("Game Over \nFor continue click `ok` or `Enter` ")
+              ? ""
+              : location.reload(),
+          1000
+        );
       }
     }
     return gameOver;
@@ -67,11 +70,12 @@ function moveUfo() {
 
   function draw(timePassed) {
     if (window.screen.width < 500) {
-    ufo.style.top = timePassed / 25 + "%";
-  } else {
-    ufo.style.top = timePassed / 15 + "%";
-  }}
-  ufo.style.left = (getCordLeft(rocket) + 20) + "px";
+      ufo.style.top = timePassed / 25 + "%";
+    } else {
+      ufo.style.top = timePassed / 15 + "%";
+    }
+  }
+  ufo.style.left = getCordLeft(rocket) + 20 + "px";
 }
 
 if (gameOver === false) {
@@ -81,69 +85,73 @@ if (gameOver === false) {
 moveUfo();
 
 function rocketMoveBtns() {
-  document.addEventListener("keydown", function () {
+  document.addEventListener("keydown", function (event) {
+    // TODO: Create generic function;
     if (event.keyCode === 38 && topCord > -5) {
       topCord -= power;
       rocket.style.top = topCord + "%";
-      topKey.classList.add('tap')
+      topKey.classList.add("tap");
     }
     if (event.keyCode === 40 && topCord < 85) {
       topCord += power;
       rocket.style.top = topCord + "%";
-      bottomKey.classList.add('tap')
+      bottomKey.classList.add("tap");
     }
     if (event.keyCode === 37 && leftCord > -5) {
       leftCord -= power;
       rocket.style.left = leftCord + "%";
-      leftKey.classList.add('tap')
+      leftKey.classList.add("tap");
     }
     if (event.keyCode === 39 && leftCord < 95) {
       leftCord += power;
       rocket.style.left = leftCord + "%";
-      rightKey.classList.add('tap')
+      rightKey.classList.add("tap");
     }
   });
 }
 rocketMoveBtns();
 
 function keyboardEffect() {
+  // TODO: Create generic function;
   document.addEventListener("keyup", function () {
     if (event.keyCode === 38 && topCord > -5) {
-      topKey.classList.remove('tap')
+      topKey.classList.remove("tap");
     }
     if (event.keyCode === 40 && topCord < 85) {
-      bottomKey.classList.remove('tap')
+      bottomKey.classList.remove("tap");
     }
     if (event.keyCode === 37 && leftCord > -5) {
-      leftKey.classList.remove('tap')
+      leftKey.classList.remove("tap");
     }
     if (event.keyCode === 39 && leftCord < 95) {
-      rightKey.classList.remove('tap')
+      rightKey.classList.remove("tap");
     }
   });
 }
 keyboardEffect();
 
-
-topKey.addEventListener('click', function() {
+// TODO: Create generic function;
+topKey.addEventListener("click", function () {
   if (topCord > -5) {
     topCord -= power;
-      rocket.style.top = topCord + "%";
-}})
-bottomKey.addEventListener('click', function() {
+    rocket.style.top = topCord + "%";
+  }
+});
+bottomKey.addEventListener("click", function () {
   if (topCord < 85) {
     topCord += power;
-      rocket.style.top = topCord + "%";
-}})
-leftKey.addEventListener('click', function() {
+    rocket.style.top = topCord + "%";
+  }
+});
+leftKey.addEventListener("click", function () {
   if (leftCord > -5) {
     leftCord -= power;
-      rocket.style.left = leftCord + "%";
-}})
-rightKey.addEventListener('click', function() {
+    rocket.style.left = leftCord + "%";
+  }
+});
+rightKey.addEventListener("click", function () {
   if (leftCord < 95) {
     leftCord += power;
-      rocket.style.left = leftCord + "%";
-}})
-
-console.log(window.screen.width)
+    rocket.style.left = leftCord + "%";
+  }
+});
